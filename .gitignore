@@ -1,0 +1,31 @@
+# --- Python Environment ---
+.venv/
+.venv12/
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+
+# --- AI & Data Science ---
+# We ignore the vector database because it's usually too large for GitHub 
+# and contains binary data. Users should run ingest.py instead.
+vector_store/
+*.log
+.cache/
+
+# --- API Keys & Secrets ---
+# Crucial: Never upload your GOOGLE_API_KEY
+.env
+keys.json
+
+# --- Streamlit ---
+.streamlit/config.toml
+.streamlit/static/
+
+# --- macOS / System ---
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
