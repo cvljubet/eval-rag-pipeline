@@ -3,7 +3,7 @@ This project is part of an AI Upskilling course
 
 ## Overview
 
-Build a functional, single-agent RAG (Retrieval-Augmented Generation) application. This serves as a foundational "sprint" to prepare you for the “Second Brain” Capstone by mastering Pydantic AI agents and tool-based context retrieval.
+Build a functional, single-agent RAG (Retrieval-Augmented Generation) application. 
 
 ## Requirements
 
