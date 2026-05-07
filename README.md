@@ -108,8 +108,7 @@ rag/
 │   └── models.py         # Pydantic data models
 └── evals/
     └── judge.py          # LLM Judge for evaluation
-
----
+```
 
 ## How it works
 
