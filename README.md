@@ -109,6 +109,8 @@ rag/
 └── evals/
     └── judge.py          # LLM Judge for evaluation
 
+---
+
 ## How it works
 
 ### 1. Knowledge Ingestion & Vector Storage
