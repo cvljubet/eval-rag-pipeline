@@ -108,6 +108,7 @@ rag/
 │   └── models.py         # Pydantic data models
 └── evals/
     └── judge.py          # LLM Judge for evaluation
+    
 1. Knowledge Ingestion & Vector Storage
 Data Processing: Scientific documentation (PDFs/Text) is processed and split into semantic chunks. This data was extracted from Wikipedia, you can create your own documents with information of your interest and try different queries.
 
