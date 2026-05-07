@@ -27,7 +27,7 @@ The system should demonstrate the move from a basic "knowledge-less" chatbot to 
 
 ### 1. Clone and create virtual environment
 ```bash
-git clone <your-repo>
+git clone https://github.com/cvljubet/eval-rag-pipeline.git
 cd rag
 python3.12 -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
