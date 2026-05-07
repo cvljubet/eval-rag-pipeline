@@ -108,40 +108,27 @@ rag/
 │   └── models.py         # Pydantic data models
 └── evals/
     └── judge.py          # LLM Judge for evaluation
-    
-1. Knowledge Ingestion & Vector Storage
-Data Processing: Scientific documentation (PDFs/Text) is processed and split into semantic chunks. This data was extracted from Wikipedia, you can create your own documents with information of your interest and try different queries.
 
-Embeddings: We generate high-dimensional vector representations of these chunks using sentence-transformers.
+## How it works
 
-Vector Store: These embeddings are stored in ChromaDB, allowing for lightning-fast similarity searches when a user asks a question.
+### 1. Knowledge Ingestion & Vector Storage
+**Data Processing:** Scientific documentation (PDFs/Text) is processed and split into semantic chunks. This data was extracted from Wikipedia; you can create your own documents with information of your interest and try different queries.
 
-2. The RAG Pipeline (The Agent)
-Retrieval: When a query is received, the system performs a vector search to find the most relevant context snippets.
+- **Embeddings:** We generate high-dimensional vector representations of these chunks using `sentence-transformers`.
+- **Vector Store:** These embeddings are stored in **ChromaDB**, allowing for lightning-fast similarity searches.
 
-Augmentation: The user’s question and the retrieved snippets are bundled into a structured prompt.
+### 2. The RAG Pipeline (The Agent)
+- **Retrieval:** When a query is received, the system performs a vector search to find relevant context.
+- **Augmentation:** The question and snippets are bundled into a structured prompt.
+- **Generation:** Gemini 2.5 Pro generates a response strictly typed using Pydantic models.
 
-Generation: An LLM (Gemini 2.5 Pro) generates a response. To ensure reliability, the output is strictly typed using Pydantic models, returning both the answer and the exact source_snippet used.
+### 3. Automated Auditing (The Judge)
+This is the core "Quality Control" layer:
+- **Validation:** The Judge compares the answer against the source snippet and the original query.
+- **Scoring:** It generates a `JudgeOutput` containing **Faithfulness** (prevents hallucinations) and **Relevance**.
 
-3. Automated Auditing (The Judge)
-This is the core "Quality Control" layer of the project:
-
-The Agent’s output is passed to a second, independent instance of the LLM.
-
-Validation: The Judge compares the answer against the source_snippet and the original query.
-
-Scoring: It fills out a "Report Card" (JudgeOutput) containing:
-
-Faithfulness: Does the answer stick to the facts in the source? (Prevents Hallucinations)
-
-Relevance: Does the answer actually solve the user's problem?
-
-Reasoning: A natural language explanation of why the score was given.
-
-4. Asynchronous Execution
-The entire system is built on Python’s asyncio framework.
-
-This ensures that while the system is waiting for an API response from Gemini or a database read from ChromaDB, the CPU is unblocked and ready to handle other tasks, making the pipeline **highly scalable**.
+### 4. Asynchronous Execution
+The entire system is built on Python’s `asyncio` framework. This ensures that while waiting for API or database responses, the system remains unblocked and scalable.
 
 ## Models Used
 
